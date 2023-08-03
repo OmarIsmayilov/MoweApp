@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MovaApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started">Get started</string>
+    <string name="the_best_movie_streaming_app_of_the_century_to_make_your_days_great">The best movie streaming app of the century to make your days great!</string>
+    <string name="welcome_to_mova">Welcome to Mova</string>
+    <string name="sign_in">Sign in</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="login_is_account_text">Don\'t have an account?\n</string>
+    <string name="login_signup_text">Sign up\n</string>
+</resources>
