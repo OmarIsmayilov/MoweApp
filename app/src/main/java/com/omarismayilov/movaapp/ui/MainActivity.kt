@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setStatusBar() {
-        val window = this.window
+       /* val window = this.window
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-        )
+        )*/
     }
 
     private fun setBottomView() {
