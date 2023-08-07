@@ -42,17 +42,18 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
         dataBinding = true
     }
 }
 
 dependencies {
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
     val navVersion = "2.6.0"
     val lifecycleVersion = "2.6.1"
     val lottieVersion = "5.2.0"
-    val roomVersion = "2.5.1"
+    val roomVersion = "2.5.2"
 
 
     //Navigation Components
@@ -77,7 +78,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
+    implementation("com.google.dagger:hilt-android:2.46")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     //Firebase Auth
@@ -96,8 +97,12 @@ dependencies {
     //MotionToast
     implementation("com.github.Spikeysanju:MotionToast:1.4")
 
-    //ImageSlider
-    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
+    //Viewpager Implementation
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    //CircleIndicator
+    implementation("me.relex:circleindicator:2.1.6")
 
     //YoutubePlayer
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")

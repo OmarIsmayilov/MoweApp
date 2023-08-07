@@ -5,6 +5,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F70004</color>
     <color name="red_shadow">#33E21221</color>
+    <color name="focused_color">#9FB53540</color>
     <color name="red_input_active_background">#fee9eb</color>
     <color name="dark_shadow">#faedee</color>
     <color name="text_color">#FFFFFFFF</color>

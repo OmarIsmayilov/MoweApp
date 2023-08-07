@@ -9,4 +9,8 @@
     <string name="or_continue_with">or continue with</string>
     <string name="login_is_account_text">Don\'t have an account?\n</string>
     <string name="login_signup_text">Sign up\n</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="password_required">Password required\n</string>
+    <string name="client_id">200635067728-eeimuao9jvi54f1o7fmqb58ug535dpc4.apps.googleusercontent.com</string>
+
 </resources>

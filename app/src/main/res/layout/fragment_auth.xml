@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    tools:context=".ui.auth.AuthFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_gravity="center"
+            android:src="@drawable/auth_icon" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alata"
+            android:text="Let's you in"
+            android:textColor="@color/text_color"
+            android:textSize="37sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="17dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/main_background"
+                android:fontFamily="@font/alata"
+                android:padding="16dp"
+                android:text="Continue with Facebook"
+                android:textColor="@color/text_color"
+                android:textSize="15sp"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/facebook_icon"
+                app:iconGravity="textStart"
+                app:iconPadding="15dp"
+                app:iconSize="26dp"
+                app:iconTint="#FFFFFF"
+                app:iconTintMode="multiply"
+                app:rippleColor="#1877F1"
+                app:strokeColor="@color/unselected_tabs_indicator"
+                app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/main_background"
+                android:fontFamily="@font/alata"
+                android:padding="16dp"
+                android:text="Continue with Google"
+                android:textColor="@color/text_color"
+                android:textSize="15sp"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/google_icon"
+                app:iconGravity="textStart"
+                app:iconPadding="15dp"
+                app:iconSize="26dp"
+                app:iconTint="#FFFFFF"
+                app:iconTintMode="multiply"
+                app:rippleColor="#EA493B"
+                app:strokeColor="@color/unselected_tabs_indicator"
+                app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/main_background"
+                android:fontFamily="@font/alata"
+                android:padding="16dp"
+                android:text="Continue with GitHub"
+                android:textColor="@color/text_color"
+                android:textSize="15sp"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/github_icon"
+                app:iconGravity="textStart"
+                app:iconPadding="15dp"
+                app:iconSize="26dp"
+                app:iconTint="@color/black"
+                app:iconTintMode="multiply"
+                app:rippleColor="@color/text_color"
+                app:strokeColor="@color/unselected_tabs_indicator"
+                app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@color/unselected_tabs_indicator"
+                android:padding="5dp">
+
+            </View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/alata"
+                android:text="or"
+                android:textColor="@color/text_color"
+                android:textSize="22sp">
+
+            </TextView>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/unselected_tabs_indicator"></View>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/second_btn_text"
+            android:fontFamily="@font/alata"
+            android:padding="17dp"
+            android:text="Sign in with password"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:rippleColor="@color/black_overlay" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? "
+            android:textColor="@color/inactive_input" />
+
+        <TextView
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Sign up"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

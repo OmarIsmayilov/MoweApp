@@ -3,8 +3,14 @@
     <style name="Base.Theme.MovaApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:statusBarColor">@color/main_background</item>
     </style>
+
+    <style name="CustomBottomBarStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/main_background</item>
+    </style>
+
+
 
     <style name="Theme.MovaApp" parent="Base.Theme.MovaApp" />
 </resources>

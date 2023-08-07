@@ -34,27 +34,29 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:textColorHint="@color/unselected_tabs"
-            app:boxBackgroundColor="@color/et_background"
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
+            app:errorEnabled="true"
             app:boxStrokeColor="@color/red"
-            app:boxStrokeErrorColor="@color/red"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="1dp"
             app:hintEnabled="false"
             app:startIconDrawable="@drawable/baseline_email_24"
-            app:startIconTint="@color/unselected_tabs">
+            app:startIconTint="@color/text_color">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_background"
                 android:fontFamily="@font/alata"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -63,29 +65,31 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_pass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="25dp"
             android:textColorHint="@color/unselected_tabs"
-            app:boxBackgroundColor="@color/et_background"
+            app:boxStrokeColor="@color/red"
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeColor="@color/red"
-            app:boxStrokeErrorColor="@color/red"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="1dp"
             app:hintEnabled="false"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/unselected_tabs"
+            app:errorEnabled="true"
+            app:passwordToggleTint="@color/text_color"
             app:startIconDrawable="@drawable/baseline_lock_24"
-            app:startIconTint="@color/unselected_tabs">
+            app:startIconTint="@color/text_color">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_pass"
                 android:layout_width="match_parent"
+                android:background="@drawable/et_background"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/alata"
                 android:hint="Password"
@@ -95,12 +99,12 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStart"
+            android:id="@+id/btnSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="25dp"
             android:backgroundTint="@color/second_btn_text"
             android:fontFamily="@font/alata"
             android:padding="17dp"
@@ -253,41 +257,43 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginTop="27dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account?"
-                android:textColor="@color/inactive_input" />
-
-            <TextView
-                android:id="@+id/textViewSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Sign in"
-                android:textColor="@color/red"
-                android:textStyle="bold" />
-        </LinearLayout>
-
 
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/ib_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:textColor="@color/inactive_input" />
+
+        <TextView
+            android:id="@+id/textViewSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Sign in"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -295,4 +301,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loginLoading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

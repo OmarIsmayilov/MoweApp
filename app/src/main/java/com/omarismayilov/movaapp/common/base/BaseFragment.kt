@@ -1,4 +1,4 @@
-package com.omarismayilov.movaapp.base
+package com.omarismayilov.movaapp.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
