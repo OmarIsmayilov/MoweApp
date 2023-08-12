@@ -15,10 +15,10 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MovieHolder>() {
     inner class MovieHolder(val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieResponseDTO) {
             with(binding){
-                tvTitle.text = item.title
+                movie = item
                 ivMovie.loadUrl(item.posterPath)
+                binding.executePendingBindings()
             }
-
         }
 
     }
