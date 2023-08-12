@@ -3,14 +3,23 @@
     <style name="Base.Theme.MovaApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/main_background</item>
+        <item name="android:statusBarColor">@color/second_btn_text</item>
     </style>
 
     <style name="CustomBottomBarStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/main_background</item>
     </style>
 
+    <style name="CustomChipBtnStyle" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipBackgroundColor">@color/main_background</item>
+        <item name="android:textColor">@color/chip_txt_color</item>
+        <item name="chipStrokeColor">@color/red</item>
+        <item name="strokeWidth">3dp</item>
+    </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@drawable/et_background</item>
+    </style>
 
     <style name="Theme.MovaApp" parent="Base.Theme.MovaApp" />
 </resources>

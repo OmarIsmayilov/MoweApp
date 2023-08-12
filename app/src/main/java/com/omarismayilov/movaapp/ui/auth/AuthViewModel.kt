@@ -1,15 +1,18 @@
 package com.omarismayilov.movaapp.ui.auth
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.textfield.TextInputLayout
+import com.omarismayilov.movaapp.common.utils.Resource
 import com.omarismayilov.movaapp.common.utils.ValidationHelper
-import com.omarismayilov.movaapp.data.dto.response.AuthResponse
 import com.omarismayilov.movaapp.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,43 +22,71 @@ class AuthViewModel @Inject constructor(
     private val helper: ValidationHelper,
 ) : ViewModel() {
 
-    private val _authResult = MutableLiveData<AuthResponse>()
-    val authResult: LiveData<AuthResponse> get() = _authResult
-
-    private val _loading = MutableLiveData<Boolean>()
-    val loading :LiveData<Boolean> get() = _loading
+    private val _authResult = MutableLiveData<AuthUiState>()
+    val authResult: LiveData<AuthUiState> get() = _authResult
 
 
     fun loginUser(email: String, password: String, checked: Boolean) {
         viewModelScope.launch {
-            _loading.postValue(true)
-            repository.login(email, password, checked)?.let {
-                _authResult.postValue(it)
+            repository.login(email, password, checked).collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _authResult.value = AuthUiState.Success("Succesfully log in")
+                        Log.e(TAG, "loginUser: success", )
+                    }
 
+                    is Resource.Error -> {
+                        _authResult.value = AuthUiState.Error(it.exception.message.toString())
+                        Log.e(TAG, "loginUser: error", )
+                    }
+
+                    is Resource.Loading -> {
+                        _authResult.value = AuthUiState.Loading
+                    }
+                }
             }
-            _loading.postValue(false)
         }
 
     }
 
     fun registerUser(email: String, password: String) {
         viewModelScope.launch {
-            _loading.postValue(true)
-            repository.register(email, password)?.let {
-                _authResult.postValue(it)
+            repository.register(email, password).collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _authResult.value = AuthUiState.Success("Succesfully create user")
+                    }
 
+                    is Resource.Error -> {
+                        _authResult.value = AuthUiState.Error(it.exception.message.toString())
+                    }
+
+                    is Resource.Loading -> {
+                        _authResult.value = AuthUiState.Loading
+
+                    }
+                }
             }
-            _loading.postValue(false)
         }
     }
 
     fun logoutUser() {
         viewModelScope.launch {
-            _loading.postValue(true)
-            repository.logOut()?.let {
-                _authResult.postValue(it)
+            repository.logOut().collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _authResult.value = AuthUiState.Success("Succesfully log out")
+                    }
+
+                    is Resource.Error -> {
+                        _authResult.value = AuthUiState.Error(it.exception.message.toString())
+                    }
+
+                    is Resource.Loading -> {
+                        _authResult.value = AuthUiState.Loading
+                    }
+                }
             }
-            _loading.postValue(false)
         }
     }
 

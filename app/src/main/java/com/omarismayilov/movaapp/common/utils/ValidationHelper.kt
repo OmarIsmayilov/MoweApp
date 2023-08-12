@@ -1,12 +1,22 @@
 package com.omarismayilov.movaapp.common.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.util.Patterns
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
 import com.omarismayilov.movaapp.R
 
-class ValidationHelper(context: Context) {
+class ValidationHelper(val context: Context) {
+
+    fun isInternetAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork
+        val capabilities = connectivityManager.getNetworkCapabilities(network)
+        return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    }
 
     private fun isEmailValid(email: String): Boolean {
         val pattern = Patterns.EMAIL_ADDRESS

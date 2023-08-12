@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.omarismayilov.movaapp.R
 import com.omarismayilov.movaapp.common.base.BaseFragment
+import com.omarismayilov.movaapp.common.utils.Extensions.gone
 import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
+import com.omarismayilov.movaapp.common.utils.Extensions.visible
 import com.omarismayilov.movaapp.common.utils.ValidationHelper
 import com.omarismayilov.movaapp.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,16 +24,34 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     private val viewModel: AuthViewModel by viewModels()
     override fun observeEvents() {
         with(viewModel) {
+
             authResult.observe(viewLifecycleOwner) {
-                requireActivity().showMessage(it)
-                if (it.success) {
-                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
-                }else{
-                    binding.loginLoading2.visibility = View.INVISIBLE
+                with(binding){
+                    when (it) {
+                        is AuthUiState.Success -> {
+                            loginLoading2.gone()
+                            requireActivity().showMessage(
+                                "Success",
+                                it.message,
+                                MotionToastStyle.SUCCESS
+                            )
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                        }
+
+                        is AuthUiState.Error -> {
+                            loginLoading2.gone()
+                            requireActivity().showMessage(
+                                "Error",
+                                it.message,
+                                MotionToastStyle.ERROR
+                            )
+                        }
+
+                        is AuthUiState.Loading -> {
+                            loginLoading2.visible()
+                        }
+                    }
                 }
-            }
-            loading.observe(viewLifecycleOwner){
-                binding.loginLoading2.visibility = if(it) View.VISIBLE else View.INVISIBLE
             }
         }
     }
@@ -42,10 +62,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     override fun setupListeners() {
         with(binding) {
-            btnSignup.setOnClickListener {
+            btnRegister.setOnClickListener {
                 validateData()
             }
-            textViewSignIn.setOnClickListener {
+            tvSignIn.setOnClickListener {
                 findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
             }
             ibBack.setOnClickListener {

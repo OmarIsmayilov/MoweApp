@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId = "com.omarismayilov.movaapp"
-        minSdk = 29
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -49,7 +49,6 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.gms:play-services-auth:20.6.0")
     val navVersion = "2.6.0"
     val lifecycleVersion = "2.6.1"
     val lottieVersion = "5.2.0"
@@ -83,6 +82,8 @@ dependencies {
 
     //Firebase Auth
     implementation("com.google.firebase:firebase-auth-ktx:22.1.0")
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
