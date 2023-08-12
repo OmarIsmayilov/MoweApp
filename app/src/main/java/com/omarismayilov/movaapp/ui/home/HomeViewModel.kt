@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omarismayilov.movaapp.data.dto.NowPlayingDTO
-import com.omarismayilov.movaapp.data.network.NetworkResponse
+import com.omarismayilov.movaapp.common.utils.Resource
 import com.omarismayilov.movaapp.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,21 +16,82 @@ class HomeViewModel @Inject constructor(
     private val movieRepository: MovieRepository,
 ) : ViewModel() {
 
-    private val _nowPlayingMovies = MutableLiveData<NetworkResponse<NowPlayingDTO>>()
-    val nowPlayingMovies: LiveData<NetworkResponse<NowPlayingDTO>> = _nowPlayingMovies
+    private val _nowPlayingMovies = MutableLiveData<MovieUiState>()
+    val nowPlayingMovies: LiveData<MovieUiState> = _nowPlayingMovies
+
+    private val _trendingMovies = MutableLiveData<MovieUiState>()
+    val topRatedMovies: LiveData<MovieUiState> get() = _trendingMovies
+
+    private val _upComingMovies = MutableLiveData<MovieUiState>()
+    val upComingMovies: LiveData<MovieUiState> = _upComingMovies
 
     init {
         getNowPlaying()
+        getWeeklyTrending()
+        getUpcoming()
     }
 
-     private fun getNowPlaying() {
-         viewModelScope.launch {
-             _nowPlayingMovies.value = NetworkResponse.Loading
-             val response = movieRepository.getNowPlaying()
-             _nowPlayingMovies.value = response
-         }
-     }
+    private fun getUpcoming() {
+        viewModelScope.launch {
+            movieRepository.getUpcoming().collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _upComingMovies.value = MovieUiState.Success(it.data.movieResponseDTOS)
+                    }
 
+                    is Resource.Error -> {
+                        _upComingMovies.value = MovieUiState.Error(it.exception.message.toString())
+                    }
+
+                    is Resource.Loading -> {
+                        _upComingMovies.value = MovieUiState.Loading
+                    }
+                }
+            }
+        }
     }
+
+    private fun getNowPlaying() {
+        viewModelScope.launch {
+            movieRepository.getNowPlaying().collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _nowPlayingMovies.value = MovieUiState.Success(it.data.movieResponseDTOS)
+                    }
+
+                    is Resource.Error -> {
+                        _nowPlayingMovies.value = MovieUiState.Error(it.exception.message.toString())
+                    }
+
+                    is Resource.Loading -> {
+                        _nowPlayingMovies.value = MovieUiState.Loading
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun getWeeklyTrending() {
+        viewModelScope.launch {
+            movieRepository.getTrending().collectLatest {
+                when (it) {
+                    is Resource.Success -> {
+                        _trendingMovies.value = MovieUiState.Success(it.data.results)
+                    }
+
+                    is Resource.Error -> {
+                        _trendingMovies.value = MovieUiState.Error(it.exception.message.toString())
+                    }
+
+                    is Resource.Loading -> {
+                        _trendingMovies.value = MovieUiState.Loading
+                    }
+                }
+            }
+        }
+    }
+
+}
 
 

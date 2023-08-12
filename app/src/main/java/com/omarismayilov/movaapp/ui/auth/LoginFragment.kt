@@ -4,10 +4,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.omarismayilov.movaapp.common.base.BaseFragment
+import com.omarismayilov.movaapp.common.utils.Extensions.gone
 import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
+import com.omarismayilov.movaapp.common.utils.Extensions.visible
 import com.omarismayilov.movaapp.common.utils.ValidationHelper
 import com.omarismayilov.movaapp.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
@@ -16,16 +19,34 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun observeEvents() {
         with(viewModel) {
             authResult.observe(viewLifecycleOwner) {
-                requireActivity().showMessage(it)
-                if (it.success) {
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                }else {
-                    binding.loginLoading.visibility = View.INVISIBLE
+                with(binding){
+                    when (it) {
+                        is AuthUiState.Success -> {
+                            loginLoading.gone()
+                            requireActivity().showMessage(
+                                "Success",
+                                it.message,
+                                MotionToastStyle.SUCCESS
+                            )
+                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                        }
+
+                        is AuthUiState.Error -> {
+                            loginLoading.gone()
+                            requireActivity().showMessage(
+                                "Error",
+                                it.message,
+                                MotionToastStyle.ERROR
+                            )
+                        }
+
+                        is AuthUiState.Loading -> {
+                            loginLoading.visible()
+                        }
+                    }
                 }
             }
-            loading.observe(viewLifecycleOwner) {
-                binding.loginLoading.visibility = if (it) View.VISIBLE else View.INVISIBLE
-            }
+
         }
     }
 

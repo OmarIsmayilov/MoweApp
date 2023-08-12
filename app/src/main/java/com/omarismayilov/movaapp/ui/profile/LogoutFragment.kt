@@ -11,8 +11,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.omarismayilov.movaapp.R
 import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
 import com.omarismayilov.movaapp.databinding.FragmentLogoutBinding
+import com.omarismayilov.movaapp.ui.auth.AuthUiState
 import com.omarismayilov.movaapp.ui.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
 class LogoutFragment : BottomSheetDialogFragment(R.layout.fragment_logout) {
@@ -25,11 +27,12 @@ class LogoutFragment : BottomSheetDialogFragment(R.layout.fragment_logout) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentLogoutBinding.inflate(inflater,container,false)
+        _binding = FragmentLogoutBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeEvents()
@@ -50,12 +53,30 @@ class LogoutFragment : BottomSheetDialogFragment(R.layout.fragment_logout) {
     }
 
     private fun observeEvents() {
-        with(viewModel){
-            authResult.observe(viewLifecycleOwner){
-                requireActivity().showMessage(it)
-                if(it.success){
-                    findNavController().navigate(LogoutFragmentDirections.actionLogoutFragmentToWelcomeFragment())
+        with(viewModel) {
+            authResult.observe(viewLifecycleOwner) {
+                when (it) {
+                    is AuthUiState.Success -> {
+                        requireActivity().showMessage(
+                            "Logging out",
+                            it.message,
+                            MotionToastStyle.INFO
+                        )
+                        findNavController().navigate(LogoutFragmentDirections.actionLogoutFragmentToWelcomeFragment())
+                    }
+
+                    is AuthUiState.Error -> {
+                        requireActivity().showMessage(
+                            "Info",
+                            it.message,
+                            MotionToastStyle.ERROR
+                        )
+                    }
+
+                    is AuthUiState.Loading -> {}
                 }
+
+
             }
         }
     }

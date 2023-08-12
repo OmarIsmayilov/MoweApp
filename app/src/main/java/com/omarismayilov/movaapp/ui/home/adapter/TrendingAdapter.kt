@@ -1,20 +1,16 @@
-package com.omarismayilov.movaapp.ui.home.adapters
+package com.omarismayilov.movaapp.ui.home.adapter
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.omarismayilov.movaapp.R
-import com.omarismayilov.movaapp.common.utils.Constants.BASE_URL_IMAGE
+import com.omarismayilov.movaapp.common.utils.DiffUtilCallback
 import com.omarismayilov.movaapp.common.utils.Extensions.loadUrl
-import com.omarismayilov.movaapp.data.dto.MovieResponseDTO
+import com.omarismayilov.movaapp.data.model.MovieResponseDTO
 import com.omarismayilov.movaapp.databinding.ItemMovieBinding
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
+class TrendingAdapter : RecyclerView.Adapter<TrendingAdapter.MovieHolder>() {
 
     inner class MovieHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieResponseDTO) {
@@ -42,21 +38,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
         holder.bind(item)
     }
 
-    object diffUtilCallBack : DiffUtil.ItemCallback<MovieResponseDTO>() {
-        override fun areItemsTheSame(
-            oldItem: MovieResponseDTO,
-            newItem: MovieResponseDTO,
-        ): Boolean {
-            return oldItem.id==newItem.id
-        }
+    val differ = AsyncListDiffer(this, DiffUtilCallback)
 
-        override fun areContentsTheSame(
-            oldItem: MovieResponseDTO,
-            newItem: MovieResponseDTO,
-        ): Boolean {
-            return oldItem==newItem
-        }
-    }
-
-    val differ = AsyncListDiffer(this,diffUtilCallBack)
 }

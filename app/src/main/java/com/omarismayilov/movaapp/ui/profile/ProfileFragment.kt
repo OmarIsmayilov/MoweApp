@@ -4,7 +4,9 @@ package com.omarismayilov.movaapp.ui.profile
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
 import com.omarismayilov.movaapp.common.base.BaseFragment
+import com.omarismayilov.movaapp.common.utils.SharedPrefManager
 import com.omarismayilov.movaapp.databinding.FragmentProfileBinding
+import javax.inject.Inject
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
@@ -34,7 +36,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     }
 
     private fun setTheme() {
-        val theme = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO
-        binding.themeSwitch.isChecked = !theme
+        val theme = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        binding.themeSwitch.isChecked = theme
     }
 }

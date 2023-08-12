@@ -1,43 +1,72 @@
 package com.omarismayilov.movaapp.ui.home
 
-import android.content.ContentValues.TAG
-import android.graphics.Movie
-import android.util.Log
 import androidx.fragment.app.viewModels
-import androidx.viewpager.widget.PagerAdapter
+import androidx.navigation.fragment.findNavController
 import com.omarismayilov.movaapp.common.base.BaseFragment
-import com.omarismayilov.movaapp.data.network.NetworkResponse
+import com.omarismayilov.movaapp.common.utils.Extensions.gone
+import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
+import com.omarismayilov.movaapp.common.utils.Extensions.visible
+import com.omarismayilov.movaapp.common.utils.MovieTypeEnum
+import com.omarismayilov.movaapp.data.model.response.MovieType
 import com.omarismayilov.movaapp.databinding.FragmentHomeBinding
-import com.omarismayilov.movaapp.ui.home.adapters.MovieAdapter
-import com.omarismayilov.movaapp.ui.home.adapters.PagingAdapter
+import com.omarismayilov.movaapp.ui.home.adapter.TrendingAdapter
+import com.omarismayilov.movaapp.ui.home.adapter.PagerAdapter
+import com.omarismayilov.movaapp.ui.home.adapter.UpcomingAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private val viewModel : HomeViewModel by viewModels()
-    private val movieAdapter = MovieAdapter()
+    private val viewModel: HomeViewModel by viewModels()
+    private val trendingAdapter = TrendingAdapter()
+    private val upComingAdapter = UpcomingAdapter()
+    private val pagerAdapter = PagerAdapter()
     override fun observeEvents() {
-        with(viewModel){
-            nowPlayingMovies.observe(viewLifecycleOwner){response->
-                when(response){
-                    is NetworkResponse.Success ->{
-                        Log.e(TAG, "observeEvents:${response.data.movieResponseDTOS} ", )
-                        val adapter = PagingAdapter(response.data.movieResponseDTOS)
-                        binding.viewPager.adapter = adapter
-                        movieAdapter.differ.submitList(response.data.movieResponseDTOS)
+        with(viewModel) {
+            with(binding) {
+
+                nowPlayingMovies.observe(viewLifecycleOwner) {
+                    when (it) {
+                        is MovieUiState.Success -> {
+                            loginLoading.gone()
+                            pagerAdapter.differ.submitList(it.data)
+                        }
+
+                        is MovieUiState.Error -> {
+                            loginLoading.gone()
+                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                        }
+                        is MovieUiState.Loading -> {
+                            loginLoading.visible()
+                        }
                     }
-                    is NetworkResponse.Error ->{
-                        Log.e(TAG, "observeEventsError: ${response.exception}", )
+                }
+
+                topRatedMovies.observe(viewLifecycleOwner) {
+                    when (it) {
+                        is MovieUiState.Success -> {
+                            trendingAdapter.differ.submitList(it.data.subList(0, 10))
+                        }
+                        is MovieUiState.Error -> {
+                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                        }
+                        is MovieUiState.Loading -> {}
                     }
-                    is NetworkResponse.Loading ->{
-                        Log.e(TAG, "observeEvents:Loading $response", )
+                }
+
+                upComingMovies.observe(viewLifecycleOwner) {
+                    when (it) {
+                        is MovieUiState.Success -> {
+                            upComingAdapter.differ.submitList(it.data)
+                        }
+                        is MovieUiState.Error -> {
+                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                        }
+                        is MovieUiState.Loading -> {}
                     }
-                    else->{}
                 }
             }
-
-
         }
     }
 
@@ -45,15 +74,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         setRecyclerView()
     }
 
+
     private fun setRecyclerView() {
-        with(binding){
-            recyclerView.adapter = movieAdapter
+        with(binding) {
+            rvRated.adapter = trendingAdapter
+            rvUpComing.adapter = upComingAdapter
+            viewPager.adapter = pagerAdapter
+
         }
     }
 
     override fun setupListeners() {
-
+        with(binding) {
+            tvShow.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToMovieListFragment(
+                        MovieType("Top 10 Movies This Week", MovieTypeEnum.TOP_RATED_MOVIES)
+                    )
+                )
+            }
+            tvShow2.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToMovieListFragment(
+                        MovieType("New Releases", MovieTypeEnum.UPCOMING)
+                    )
+                )
+            }
+        }
     }
-
-
 }
+

@@ -5,17 +5,22 @@
     <data>
     <variable
         name="movie"
-        type="com.omarismayilov.movaapp.data.dto.MovieResponseDTO" />
+        type="com.omarismayilov.movaapp.data.model.MovieResponseDTO" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
-        android:layout_marginEnd="10dp"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="12dp"
+        android:foregroundGravity="center">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -24,6 +29,7 @@
                 android:id="@+id/ivMovie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large">
 
@@ -32,10 +38,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="14dp"
-                android:elevation="7dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/second_btn_text"
+                android:elevation="7dp"
                 app:cardCornerRadius="6dp"
                 app:strokeWidth="0dp">
 
@@ -47,7 +53,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="6dp"
-                    android:text="@{String.valueOf(movie.voteAverage)}"
+                    android:text="@{@string/format_vote(movie.voteAverage)}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold">

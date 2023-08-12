@@ -1,4 +1,4 @@
-package com.omarismayilov.movaapp.data.dto
+package com.omarismayilov.movaapp.data.model
 
 
 import com.google.gson.annotations.SerializedName
