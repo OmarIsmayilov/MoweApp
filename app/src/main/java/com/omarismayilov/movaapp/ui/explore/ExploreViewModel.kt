@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omarismayilov.movaapp.common.utils.Resource
+import com.omarismayilov.movaapp.data.model.response.FilterOption
 import com.omarismayilov.movaapp.data.repository.MovieRepository
 import com.omarismayilov.movaapp.ui.home.MovieUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,6 +49,7 @@ class ExploreViewModel @Inject constructor(
             }
         }
     }
+
     fun getSearch(query: String) {
         viewModelScope.launch {
             repository.getSearchData(query).collectLatest {
@@ -58,6 +60,17 @@ class ExploreViewModel @Inject constructor(
                 }
             }
         }
+    }
 
+    fun getFilter(filterOption: FilterOption){
+        viewModelScope.launch {
+            repository.getFilter(filterOption).collectLatest {
+                when(it){
+                    is Resource.Success ->{_exploreData.value = MovieUiState.Success(it.data.results)}
+                    is Resource.Error ->{_exploreData.value = MovieUiState.Error(it.exception.message.toString())}
+                    is Resource.Loading ->{_exploreData.value = MovieUiState.Loading}
+                }
+            }
+        }
     }
 }

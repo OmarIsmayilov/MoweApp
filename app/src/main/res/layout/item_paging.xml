@@ -1,97 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    >
 
-    <ImageView
-        android:id="@+id/ivBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@color/et_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+    <variable
+        name="movie"
+        type="com.omarismayilov.movaapp.data.model.MovieResponseDTO" />
+    </data>
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:shadowColor="@color/black_overlay"
-        android:shadowRadius="30"
-        android:text="Movie name"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvGenres"
-        app:layout_constraintStart_toStartOf="@+id/tvGenres" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvGenres"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:maxLines="3"
-        android:shadowColor="#66AAAAAA"
-        android:shadowRadius="30"
-        android:text="Genres"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            load_url="@{movie.backdropPath}"
+            android:src="@color/et_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/second_btn_text"
-        android:drawableTint="@color/white"
-        android:paddingLeft="13dp"
-        android:paddingRight="13dp"
-        android:text="Play"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:cornerRadius="50dp"
-        app:icon="@drawable/baseline_play_circle_24"
-        app:iconGravity="start"
-        app:iconPadding="3dp"
-        app:iconSize="17dp"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/white" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:shadowColor="@color/black_overlay"
+            android:shadowRadius="30"
+            android:text="@{movie.title}"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvGenres"
+            app:layout_constraintStart_toStartOf="@+id/tvGenres" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:backgroundTint="#00FFFFFF"
-        android:paddingLeft="13dp"
-        android:paddingTop="1dp"
-        android:paddingRight="13dp"
-        android:paddingBottom="1dp"
-        android:text="My List"
-        android:textColor="@color/white"
-        app:cornerRadius="50dp"
-        app:icon="@drawable/baseline_add_24"
-        app:iconPadding="3dp"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintHeight="45dp"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
-        app:rippleColor="@color/red"
-        app:strokeColor="@color/white"
-        app:strokeWidth="2dp" />
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:maxLines="3"
+            android:shadowColor="#66AAAAAA"
+            android:shadowRadius="30"
+            android:text="@{movie.overview}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/button" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/second_btn_text"
+            android:drawableTint="@color/white"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:text="@string/play"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/baseline_play_circle_24"
+            app:iconGravity="start"
+            app:iconPadding="3dp"
+            app:iconSize="17dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight="45dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#00FFFFFF"
+            android:paddingLeft="13dp"
+            android:paddingTop="1dp"
+            android:paddingRight="13dp"
+            android:paddingBottom="1dp"
+            android:text="@string/my_list"
+            android:textColor="@color/white"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/baseline_add_24"
+            app:iconPadding="3dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintHeight="45dp"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintTop_toTopOf="@+id/button"
+            app:rippleColor="@color/red"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

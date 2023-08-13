@@ -42,6 +42,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:padding="2dp"
+                    load_url="@{movie.posterPath}"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
                     app:srcCompat="@color/et_background">

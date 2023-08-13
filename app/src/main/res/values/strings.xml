@@ -14,5 +14,11 @@
     <string name="client_id">200635067728-eeimuao9jvi54f1o7fmqb58ug535dpc4.apps.googleusercontent.com</string>
     <string name="error_message">Sorry, the keyword you entered could not be found. Try to check again or search with other keywords.</string>
     <string name="format_vote">%.1f</string>
+    <string name="play">Play</string>
+    <string name="my_list">My List</string>
+    <string name="sort_filter"><![CDATA[Sort & Filter]]></string>
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
+    <string name="categories">Categories</string>
 
 </resources>

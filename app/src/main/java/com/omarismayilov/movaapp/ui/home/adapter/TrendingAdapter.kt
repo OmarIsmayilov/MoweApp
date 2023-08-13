@@ -3,10 +3,8 @@ package com.omarismayilov.movaapp.ui.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omarismayilov.movaapp.common.utils.DiffUtilCallback
-import com.omarismayilov.movaapp.common.utils.Extensions.loadUrl
 import com.omarismayilov.movaapp.data.model.MovieResponseDTO
 import com.omarismayilov.movaapp.databinding.ItemMovieBinding
 
@@ -16,7 +14,6 @@ class TrendingAdapter : RecyclerView.Adapter<TrendingAdapter.MovieHolder>() {
         fun bind(item: MovieResponseDTO) {
             with(binding){
                 movie = item
-                ivMovie.loadUrl(item.posterPath)
                 binding.executePendingBindings()
             }
 

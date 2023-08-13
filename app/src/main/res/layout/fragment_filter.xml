@@ -19,7 +19,7 @@
         android:paddingTop="15dp"
         android:paddingEnd="60dp"
         android:paddingBottom="15dp"
-        android:text="Reset"
+        android:text="@string/reset"
         android:textColor="@color/second_btn_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,7 @@
         android:paddingTop="15dp"
         android:paddingEnd="55dp"
         android:paddingBottom="15dp"
-        android:text="Apply"
+        android:text="@string/apply"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/alata"
-        android:text="Sort &amp; Filter"
+        android:text="@string/sort_filter"
         android:textColor="@color/red"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -113,7 +113,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Categories"
+                            android:text="@string/categories"
                             android:textColor="@color/text_color"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -140,6 +140,7 @@
                                     app:singleSelection="true">
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/chip7"
                                         style="@style/CustomChipBtnStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -159,19 +160,6 @@
                                         android:layout_marginEnd="3dp"
                                         android:fontFamily="@font/alata"
                                         android:text="Tv"
-                                        app:chipBackgroundColor="@color/chip_bg"
-                                        app:chipCornerRadius="20dp"
-                                        app:chipStrokeWidth="2dp"
-                                        app:textEndPadding="7dp"
-                                        app:textStartPadding="7dp" />
-
-                                    <com.google.android.material.chip.Chip
-                                        style="@style/CustomChipBtnStyle"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginEnd="3dp"
-                                        android:fontFamily="@font/alata"
-                                        android:text="Person"
                                         app:chipBackgroundColor="@color/chip_bg"
                                         app:chipCornerRadius="20dp"
                                         app:chipStrokeWidth="2dp"
@@ -240,6 +228,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="3dp"
+                                        android:checked="true"
                                         android:fontFamily="@font/alata"
                                         android:text="All regions"
                                         app:chipBackgroundColor="@color/chip_bg"
@@ -532,6 +521,7 @@
                                     app:singleSelection="false">
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/action"
                                         style="@style/CustomChipBtnStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -545,6 +535,7 @@
                                         app:textStartPadding="7dp" />
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/adventure"
                                         style="@style/CustomChipBtnStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -558,6 +549,7 @@
                                         app:textStartPadding="7dp" />
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/animation"
                                         style="@style/CustomChipBtnStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -832,8 +824,9 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="3dp"
+                                        android:checked="true"
                                         android:fontFamily="@font/alata"
-                                        android:text="All Periods"
+                                        android:text="All periods"
                                         app:chipBackgroundColor="@color/chip_bg"
                                         app:chipCornerRadius="20dp"
                                         app:chipStrokeWidth="2dp"
@@ -998,6 +991,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="3dp"
+                                        android:checked="true"
                                         android:fontFamily="@font/alata"
                                         android:text="Popularity"
                                         app:chipBackgroundColor="@color/chip_bg"

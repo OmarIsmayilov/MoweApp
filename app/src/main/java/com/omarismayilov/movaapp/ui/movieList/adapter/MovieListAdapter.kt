@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omarismayilov.movaapp.common.utils.DiffUtilCallback
-import com.omarismayilov.movaapp.common.utils.Extensions.loadUrl
 import com.omarismayilov.movaapp.data.model.MovieResponseDTO
 import com.omarismayilov.movaapp.databinding.ItemMovieBinding
 import com.omarismayilov.movaapp.databinding.ItemMovieListBinding
@@ -17,7 +16,6 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieHolder>() {
         fun bind(item: MovieResponseDTO) {
             with(binding){
                 movie = item
-                ivMovie.loadUrl(item.posterPath)
                 ratingBar.rating = item.voteAverage.toFloat()
             }
 
