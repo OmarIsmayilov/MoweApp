@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="trailer"
+        type="com.omarismayilov.movaapp.data.model.TrailerDTO" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{trailer.publishedAt}"
+            android:textColor="@color/place_holder"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivTrailer"
+            android:layout_width="167dp"
+            android:layout_height="129dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:load_youtube="@{trailer.key}"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
+            app:srcCompat="@drawable/deneme"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/imageButton11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/baseline_play_circle_24"
+            android:backgroundTint="@color/red"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivTrailer"
+            app:layout_constraintEnd_toEndOf="@+id/ivTrailer"
+            app:layout_constraintStart_toStartOf="@+id/ivTrailer"
+            app:layout_constraintTop_toTopOf="@+id/ivTrailer" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ems="8"
+            android:text="@{trailer.name}"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivTrailer"
+            app:layout_constraintStart_toEndOf="@+id/ivTrailer"
+            app:layout_constraintTop_toTopOf="@+id/ivTrailer"
+            app:layout_constraintVertical_bias="0.104" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
