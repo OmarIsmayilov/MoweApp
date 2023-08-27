@@ -12,6 +12,7 @@ import com.omarismayilov.movaapp.databinding.FragmentHomeBinding
 import com.omarismayilov.movaapp.ui.home.adapter.TrendingAdapter
 import com.omarismayilov.movaapp.ui.home.adapter.PagerAdapter
 import com.omarismayilov.movaapp.ui.home.adapter.UpcomingAdapter
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import www.sanju.motiontoast.MotionToastStyle
 
@@ -22,6 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val trendingAdapter = TrendingAdapter()
     private val upComingAdapter = UpcomingAdapter()
     private val pagerAdapter = PagerAdapter()
+
     override fun observeEvents() {
         with(viewModel) {
             with(binding) {
@@ -35,8 +37,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
                         is MovieUiState.Error -> {
                             loginLoading.gone()
-                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                            requireActivity().showMessage(
+                                it.message,
+                                FancyToast.ERROR
+                            )
                         }
+
                         is MovieUiState.Loading -> {
                             loginLoading.visible()
                         }
@@ -48,9 +54,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         is MovieUiState.Success -> {
                             trendingAdapter.differ.submitList(it.data.subList(0, 10))
                         }
+
                         is MovieUiState.Error -> {
-                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                            requireActivity().showMessage(
+                                it.message,
+                                FancyToast.ERROR
+                            )
                         }
+
                         is MovieUiState.Loading -> {}
                     }
                 }
@@ -60,9 +71,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         is MovieUiState.Success -> {
                             upComingAdapter.differ.submitList(it.data)
                         }
+
                         is MovieUiState.Error -> {
-                            requireActivity().showMessage("Error", it.message, MotionToastStyle.ERROR)
+                            requireActivity().showMessage(
+                                it.message,
+                                FancyToast.ERROR
+                            )
                         }
+
                         is MovieUiState.Loading -> {}
                     }
                 }
@@ -97,6 +113,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToMovieListFragment(
                         MovieType("New Releases", MovieTypeEnum.UPCOMING)
+                    )
+                )
+            }
+            pagerAdapter.onClick = {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        it
+                    )
+                )
+            }
+            trendingAdapter.onClick = {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        it
+                    )
+                )
+            }
+            upComingAdapter.onClick = {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        it
                     )
                 )
             }

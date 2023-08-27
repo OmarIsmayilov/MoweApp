@@ -145,6 +145,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="3dp"
+                                        android:checked="true"
                                         android:fontFamily="@font/alata"
                                         android:text="Movie"
                                         app:chipBackgroundColor="@color/chip_bg"

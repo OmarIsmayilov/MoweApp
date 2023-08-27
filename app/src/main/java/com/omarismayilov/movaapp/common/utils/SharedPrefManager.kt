@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.omarismayilov.movaapp.common.utils.Constants.DARK_MODE
+import com.omarismayilov.movaapp.common.utils.Constants.PHOTO_USER
 import com.omarismayilov.movaapp.common.utils.Constants.SP_NAME
 import com.omarismayilov.movaapp.common.utils.Constants.TOKEN_USER
 
@@ -32,5 +34,23 @@ class SharedPrefManager (private val context: Context) {
     }
 
     fun getToken() = sharedPreferences.getString(TOKEN_USER, "")
+
+    fun savePhoto(uri: String?) {
+        with(sharedPreferences.edit()) {
+            putString(PHOTO_USER, uri)
+            apply()
+        }
+    }
+
+    fun getPhoto() = sharedPreferences.getString(PHOTO_USER, null)
+
+    fun saveTheme(theme: Boolean) {
+        with(sharedPreferences.edit()) {
+            putBoolean(DARK_MODE, theme)
+            apply()
+        }
+    }
+
+    fun getTheme() = sharedPreferences.getBoolean(DARK_MODE, false)
 
 }

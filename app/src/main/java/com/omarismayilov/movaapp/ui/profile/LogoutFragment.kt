@@ -13,6 +13,7 @@ import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
 import com.omarismayilov.movaapp.databinding.FragmentLogoutBinding
 import com.omarismayilov.movaapp.ui.auth.AuthUiState
 import com.omarismayilov.movaapp.ui.auth.AuthViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import www.sanju.motiontoast.MotionToastStyle
 
@@ -43,7 +44,7 @@ class LogoutFragment : BottomSheetDialogFragment(R.layout.fragment_logout) {
 
     private fun setListeners() {
         with(binding) {
-            btnLogout.setOnClickListener {
+            btnLogOut.setOnClickListener {
                 viewModel.logoutUser()
             }
             btnCancel.setOnClickListener {
@@ -59,17 +60,15 @@ class LogoutFragment : BottomSheetDialogFragment(R.layout.fragment_logout) {
                     is AuthUiState.Success -> {
                         requireActivity().showMessage(
                             "Logging out",
-                            it.message,
-                            MotionToastStyle.INFO
-                        )
+                            FancyToast.INFO
+                            )
                         findNavController().navigate(LogoutFragmentDirections.actionLogoutFragmentToWelcomeFragment())
                     }
 
                     is AuthUiState.Error -> {
                         requireActivity().showMessage(
-                            "Info",
                             it.message,
-                            MotionToastStyle.ERROR
+                            FancyToast.ERROR
                         )
                     }
 

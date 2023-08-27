@@ -9,12 +9,19 @@ import com.omarismayilov.movaapp.data.model.MovieResponseDTO
 import com.omarismayilov.movaapp.databinding.ItemPagingBinding
 
 class PagerAdapter : RecyclerView.Adapter<PagerAdapter.MovieViewHolder>() {
+
+    var onClick: (Int) -> Unit = {}
+
     inner class MovieViewHolder(val binding: ItemPagingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MovieResponseDTO) {
             with(binding) {
                 movie = item
                 binding.executePendingBindings()
+
+                itemView.setOnClickListener {
+                    onClick(item.id)
+                }
             }
         }
     }

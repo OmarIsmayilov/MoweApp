@@ -14,15 +14,15 @@ class MovieListFragment :
     BaseFragment<FragmentMovieListBinding>(FragmentMovieListBinding::inflate) {
     private val args: MovieListFragmentArgs by navArgs()
     private val viewModel: MovieListViewModel by viewModels()
-    private val adapter = MovieListAdapter()
+    private val movieListAdapter = MovieListAdapter()
 
     override fun observeEvents() {
         with(binding) {
             with(viewModel) {
-                movieData.observe(viewLifecycleOwner) { adapter.differ.submitList(it) }
-                }
+                movieData.observe(viewLifecycleOwner) { movieListAdapter.differ.submitList(it) }
             }
         }
+    }
 
 
     override fun onCreateFinish() {
@@ -36,12 +36,19 @@ class MovieListFragment :
     }
 
     private fun setRecyclerView() {
-        binding.rvMovieList.adapter = adapter
+        binding.rvMovieList.adapter = movieListAdapter
     }
 
     override fun setupListeners() {
         binding.materialToolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
+        }
+        movieListAdapter.onCLick = {
+            findNavController().navigate(
+                MovieListFragmentDirections.actionMovieListFragmentToDetailFragment(
+                    it
+                )
+            )
         }
     }
 

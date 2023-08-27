@@ -11,11 +11,17 @@ import com.omarismayilov.movaapp.databinding.ItemExploreBinding
 
 class ExploreAdapter : RecyclerView.Adapter<ExploreAdapter.MovieHolder>() {
 
+    var onCLick: (id: Int) -> Unit = {}
+
     inner class MovieHolder(val binding: ItemExploreBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieResponseDTO) {
             with(binding){
                 movie = item
                 binding.executePendingBindings()
+
+                itemView.setOnClickListener {
+                    onCLick(item.id)
+                }
             }
         }
 

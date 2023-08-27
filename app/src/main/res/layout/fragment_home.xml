@@ -9,7 +9,6 @@
     android:background="@color/main_background"
     tools:context=".ui.home.HomeFragment">
 
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loginLoading"
         android:layout_width="wrap_content"

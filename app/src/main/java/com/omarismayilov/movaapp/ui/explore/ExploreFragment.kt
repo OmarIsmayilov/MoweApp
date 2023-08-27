@@ -15,6 +15,7 @@ import com.omarismayilov.movaapp.databinding.FragmentExploreBinding
 import com.omarismayilov.movaapp.ui.explore.adapter.ExploreAdapter
 import com.omarismayilov.movaapp.ui.explore.adapter.SearchAdapter
 import com.omarismayilov.movaapp.ui.home.MovieUiState
+import com.omarismayilov.movaapp.ui.movieList.MovieListFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,7 +90,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(FragmentExploreBind
 
     private fun filterMovie(filterOption: FilterOption) {
         viewModel.getFilter(filterOption)
-        Log.e(TAG, "filterMovie: $filterOption", )
+        Log.e(TAG, "filterMovie: $filterOption")
     }
 
     private fun setAdapters() {
@@ -127,6 +128,22 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(FragmentExploreBind
                     }
                 }
             })
+
+            searchAdapter.onCLick = {
+                findNavController().navigate(
+                    ExploreFragmentDirections.actionExploreFragmentToDetailFragment(
+                        it
+                    )
+                )
+            }
+
+            exploreAdapter.onCLick = {
+                findNavController().navigate(
+                    ExploreFragmentDirections.actionExploreFragmentToDetailFragment(
+                        it
+                    )
+                )
+            }
 
 
         }

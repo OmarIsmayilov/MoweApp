@@ -105,7 +105,7 @@
                         android:layout_gravity="center"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/alata"
-                        android:text="@{String.valueOf(movie.voteAverage)}"
+                        android:text="@{@string/format_vote(movie.voteAverage)}"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
@@ -126,7 +126,6 @@
                         android:numStars="10"
                         android:progressBackgroundTint="@color/white"
                         android:progressTint="@color/second_btn_text"
-                        android:rating="4.5"
                         android:stepSize="0.1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />

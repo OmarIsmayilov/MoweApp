@@ -81,7 +81,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     //Firebase Auth
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation("com.google.android.gms:play-services-auth:20.6.0")
 
 
@@ -113,6 +113,16 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+
+    //Dialogs
+    implementation("com.github.gabriel-TheCode:AestheticDialogs:1.3.8")
+
+    //Fancy toast
+    implementation("io.github.shashank02051997:FancyToast:2.0.2")
+
+    //ImagePicker
+    implementation("com.github.dhaval2404:imagepicker:2.1")
+
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.core:core-ktx:1.10.1")

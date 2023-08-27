@@ -8,10 +8,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseUser
 import com.omarismayilov.movaapp.common.utils.Resource
 import com.omarismayilov.movaapp.common.utils.ValidationHelper
 import com.omarismayilov.movaapp.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -89,6 +91,9 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
+    fun getUserInfo(): FirebaseUser? = repository.getUserData()
+
 
     fun validateData(
         etEmail: EditText, etPass: EditText,

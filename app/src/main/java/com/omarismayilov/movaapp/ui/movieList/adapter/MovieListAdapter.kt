@@ -12,11 +12,19 @@ import com.omarismayilov.movaapp.databinding.ItemMovieListBinding
 
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieHolder>() {
 
-    inner class MovieHolder(val binding: ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root){
+     var onCLick: (id: Int) -> Unit = {}
+
+    inner class MovieHolder(val binding: ItemMovieListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MovieResponseDTO) {
-            with(binding){
+            with(binding) {
                 movie = item
                 ratingBar.rating = item.voteAverage.toFloat()
+                binding.executePendingBindings()
+
+                itemView.setOnClickListener {
+                    onCLick(item.id)
+                }
             }
 
         }
@@ -24,7 +32,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
-        val view = ItemMovieListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val view = ItemMovieListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieHolder(view)
     }
 

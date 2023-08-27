@@ -2,6 +2,7 @@ package com.omarismayilov.movaapp.data.repository
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.omarismayilov.movaapp.common.utils.Resource
 import com.omarismayilov.movaapp.common.utils.SharedPrefManager
 import kotlinx.coroutines.flow.Flow
@@ -37,6 +38,13 @@ class AuthRepository @Inject constructor(
         }.catch {
             emit(Resource.Error(it as Exception))
         }
+
+    fun getUserData(): FirebaseUser? {
+        return auth.currentUser
+    }
+
+
+
 
 
     fun logOut(): Flow<Resource<Boolean>> =

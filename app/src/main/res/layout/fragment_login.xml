@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="25dp"
             android:textColorHint="@color/unselected_tabs"
             app:boxCornerRadiusBottomEnd="15dp"

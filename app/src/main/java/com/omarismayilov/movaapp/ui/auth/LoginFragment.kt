@@ -9,6 +9,7 @@ import com.omarismayilov.movaapp.common.utils.Extensions.showMessage
 import com.omarismayilov.movaapp.common.utils.Extensions.visible
 import com.omarismayilov.movaapp.common.utils.ValidationHelper
 import com.omarismayilov.movaapp.databinding.FragmentLoginBinding
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import www.sanju.motiontoast.MotionToastStyle
 
@@ -24,9 +25,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         is AuthUiState.Success -> {
                             loginLoading.gone()
                             requireActivity().showMessage(
-                                "Success",
                                 it.message,
-                                MotionToastStyle.SUCCESS
+                                FancyToast.SUCCESS
                             )
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                         }
@@ -34,9 +34,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         is AuthUiState.Error -> {
                             loginLoading.gone()
                             requireActivity().showMessage(
-                                "Error",
                                 it.message,
-                                MotionToastStyle.ERROR
+                                FancyToast.ERROR
                             )
                         }
 

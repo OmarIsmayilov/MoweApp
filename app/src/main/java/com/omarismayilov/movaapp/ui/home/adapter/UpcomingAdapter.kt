@@ -9,12 +9,18 @@ import com.omarismayilov.movaapp.data.model.MovieResponseDTO
 import com.omarismayilov.movaapp.databinding.ItemMovieBinding
 
 class UpcomingAdapter  : RecyclerView.Adapter<UpcomingAdapter.MovieHolder>() {
+    var onClick : (Int) -> Unit = {}
 
     inner class MovieHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MovieResponseDTO) {
             with(binding) {
                 movie = item
                 binding.executePendingBindings()
+
+                itemView.setOnClickListener {
+                    onClick(item.id)
+                }
+
             }
 
         }
