@@ -21,38 +21,14 @@ object Extensions {
         FancyToast.makeText(this,description,FancyToast.LENGTH_SHORT,style,false).show()
     }
 
-    fun LottieAnimationView.visible(){
+    fun View.visible(){
         this.visibility = View.VISIBLE
     }
 
-    fun LottieAnimationView.gone(){
+    fun View.gone(){
         this.visibility = View.GONE
     }
 
-    fun ConstraintLayout.visible(){
-        this.visibility = View.VISIBLE
-    }
-
-    fun ConstraintLayout.gone(){
-        this.visibility = View.GONE
-    }
-
-    fun RecyclerView.visible(){
-        this.visibility = View.VISIBLE
-    }
-
-    fun RecyclerView.gone(){
-        this.visibility = View.GONE
-    }
-
-    fun MovieResponseDTO.toLocalModel(): MovieLocalModel {
-        return MovieLocalModel(
-            this.id,
-            this.title,
-            this.posterPath,
-            this.voteAverage.toFloat()
-        )
-    }
 
     fun DetailDTO.toLocalModel(): MovieLocalModel {
         return MovieLocalModel(
